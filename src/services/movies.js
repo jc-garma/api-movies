@@ -1,6 +1,8 @@
 const API_KEY = '4287ad07'
 
 export const searchMovies = async ({ search }) => {
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(false);
   if (search === '') return null
 
   try {
@@ -8,6 +10,8 @@ export const searchMovies = async ({ search }) => {
     const json = await response.json()
 
     const movies = json.Search
+
+    //setError(false);
 
     // Mapeamos los datos de que vienen de la app de mayusculas a minúsculas
     return movies?.map(movie => ({
@@ -17,6 +21,9 @@ export const searchMovies = async ({ search }) => {
       image: movie.Poster
     }))
   } catch (e) {
+    //setError(e);
     throw new Error('Error searching movies')
-  }
+  } /*finally { // Se ejecuta siempre se haya resuelto la promesa o mostrado el error
+    setLoading(false);
+  }*/
 }

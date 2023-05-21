@@ -47,3 +47,15 @@ form {
   border-radius: 8px;
   margin-top: 16px;
 }
+
+.pagination {
+  display: flex;
+  /*justify-content: center;*/
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+#nextBtn {
+ padding-left: 40px;
+ padding-right: 40px;
+}

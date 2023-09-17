@@ -23,6 +23,7 @@ function ListOfMovies({ itemsPerPage, movies }) {
               <li className="movie" key={movie.id}>
                 <h3>{movie.title}</h3>
                 <p>{movie.year}</p>
+                <p>{movie.released}</p>
                 <img src={movie.image} alt={movie.title} />
               </li>
             ))
@@ -54,6 +55,7 @@ function NoMoviesResults() {
 }
 
 export function Movies({ movies }) {
+  console.log('movies',movies);
   const hasMovies = movies?.length > 0;
   const itemsPerPage = 5;
 

@@ -57,10 +57,11 @@ function useSearch () {
 
 function App () {
   const [sort, setSort] = useState(false)
+  const [sortReleaseSort, setReleaseSort] = useState(false)
 
   // Componentes limpios, sacar la lógica de los componentes fuera, con custom hooks
   const { search, updateSearch, error } = useSearch()
-  const { movies, loading, getMovies } = useMovies({ search, sort })
+  const { movies, loading, getMovies } = useMovies({ search, sort, sortReleaseSort })
 
   const debouncedGetMovies = useCallback(
     debounce(search => {
@@ -79,6 +80,13 @@ function App () {
   // Ordenar las películas por título alfabeticamente 
   const handleSort = () => {
     setSort(!sort)
+    setReleaseSort(false)
+  }
+
+  // Ordenar las películas descendentemente por fecha de salida 
+  const handleReleaseSort = () => {
+    setReleaseSort(!sortReleaseSort)
+    setSort(false)
   }
 
   // Forma controlada
@@ -103,7 +111,12 @@ function App () {
            {/*<input name="query" placeholder='Avengers, Star Wars ...'/>*/}
           {/*<input ref={inputRef} type='checkbox' onChange={handleSort} checked={sort} />*/}
           {/*<button onClick={handleClick} type='submit'>Buscar</button>*/}
-          <input type='checkbox' onChange={handleSort} checked={sort} />
+          <label>Ordenar por Título:
+            <input type='checkbox' onChange={handleSort} checked={sort} />
+          </label>
+          <label>Ordenar por Release:
+            <input type='checkbox' onChange={handleReleaseSort} checked={sortReleaseSort} />
+          </label>
           <button type='submit'>Buscar</button>
         </form>
         {error && <p style={{ color: 'red' }}>{error}</p>}

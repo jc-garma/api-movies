@@ -38,20 +38,22 @@ export function useMovies({ search, sort, sortReleaseSort }) {
   // funcion se ejecuta cada vez que se renderiza el componente o el custom hook. Si no cambia la lista no volverla a ordenar
   // Solucion useMemo, calcula el nuevo orden cuando cambian las dependencias sort o movies, orden o peliculas no cuando se renderiza
   const sortedMovies = useMemo(() => {
-    if (sort) {
-      return sort
-        ? [...movies].sort((a, b) => a.title.localeCompare(b.title)) // copia del array de objetos, estado anterior [...movies]
-        : movies;
-    } else if (sortReleaseSort) {
-      return sortReleaseSort
-        ? [...movies].sort((a, b) => {
-            const date1 = new Date(a.released.split("/").reverse().join("/"));
-            const date2 = new Date(b.released.split("/").reverse().join("/"));
-            return date1 - date2;
-          }) // copia del array de objetos, estado anterior [...movies]
-        : movies;
-    } else {
-      return movies;
+    if (movies != null) {
+      if (sort) {
+        return sort
+          ? [...movies].sort((a, b) => a.title.localeCompare(b.title)) // copia del array de objetos, estado anterior [...movies]
+          : movies;
+      } else if (sortReleaseSort) {
+        return sortReleaseSort
+          ? [...movies].sort((a, b) => {
+              const date1 = new Date(a.released.split("/").reverse().join("/"));
+              const date2 = new Date(b.released.split("/").reverse().join("/"));
+              return date1 - date2;
+            }) // copia del array de objetos, estado anterior [...movies]
+          : movies;
+      } else {
+        return movies;
+      }
     }
   }, [sort, sortReleaseSort, movies]);
 

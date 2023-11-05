@@ -108,6 +108,7 @@ function App () {
               borderColor: error ? 'red' : 'transparent'
             }} onChange={handleChange} value={search} name='query' placeholder='Avengers, Star Wars, The Matrix...'
           />
+          <button type='submit'>Buscar</button>
            {/*<input name="query" placeholder='Avengers, Star Wars ...'/>*/}
           {/*<input ref={inputRef} type='checkbox' onChange={handleSort} checked={sort} />*/}
           {/*<button onClick={handleClick} type='submit'>Buscar</button>*/}
@@ -117,7 +118,7 @@ function App () {
           <label>Ordenar por Release:
             <input type='checkbox' onChange={handleReleaseSort} checked={sortReleaseSort} />
           </label>
-          <button type='submit'>Buscar</button>
+          
         </form>
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </header>

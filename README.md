@@ -6,7 +6,7 @@ Featurings:
 
 - Evita que se haga la misma búsqueda dos veces seguidas.
 
-- Búsqueda automáticam al escribir.
+- Búsqueda automática al escribir.
 
 - Evita que se haga la búsqueda continuamente al escribir (debounce)
 

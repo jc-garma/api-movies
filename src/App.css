@@ -1,3 +1,4 @@
+
 .page {
   display: flex;
   flex-direction: column;
@@ -17,6 +18,11 @@ form {
   align-items: center;
   display: flex;
   justify-content: center;
+}
+
+form button{
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 /* grid-layout responsive típico */

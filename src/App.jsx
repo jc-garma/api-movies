@@ -99,7 +99,7 @@ function App () {
   return (
     <div className='page'>
 
-      <header>
+      <header id='header'>
         <h1>Buscador de películas</h1>
         <form className='form' onSubmit={handleSubmit}>
           <input
@@ -108,7 +108,7 @@ function App () {
               borderColor: error ? 'red' : 'transparent'
             }} onChange={handleChange} value={search} name='query' placeholder='Avengers, Star Wars, The Matrix...'
           />
-          <button type='submit'>Buscar</button>
+          <button type='submit'>🔍 Buscar</button>
            {/*<input name="query" placeholder='Avengers, Star Wars ...'/>*/}
           {/*<input ref={inputRef} type='checkbox' onChange={handleSort} checked={sort} />*/}
           {/*<button onClick={handleClick} type='submit'>Buscar</button>*/}

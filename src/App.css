@@ -71,3 +71,72 @@ h1{
   justify-content: center;
   margin-bottom: 2rem;
 }
+
+/* Liked */
+
+.liked-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.liked-btn {
+  position: absolute;
+  cursor: pointer;
+  top: 15px;
+  right: 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+  background-color: rgba(156, 88, 208, 0.5);
+  background-image: url("sprite-twitter.png");
+  background-size: 1450px 50px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.liked-btn--liked {
+  animation-name: like;
+  animation-duration: 0.8s;
+  animation-timing-function: steps(28);
+  animation-fill-mode: forwards;
+}
+
+/*.liked-movieList {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 290px;
+  padding: 26px 0px 26px 24px;
+}
+
+.liked-movieList .movie-container {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.liked-movieList .movie-container .movie-img {
+  height: 225px;
+  min-height: 225px;
+  max-height: 225px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+}*/
+
+.container {
+  position: relative;
+ }
+ 
+ .heart-button {
+  position: absolute;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  margin: 10px;
+  width: 50px;
+  height: 60px;
+  z-index: 1;
+  border-radius: 30px;
+  background-color: rgba(156, 88, 208, 0.5);
+ }

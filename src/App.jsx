@@ -100,7 +100,8 @@ function App () {
     <div className='page'>
 
       <header id='header'>
-        <h1>Buscador de películas</h1>
+        <h1>🎬 Buscador de películas</h1>
+        <br/>
         <form className='form' onSubmit={handleSubmit}>
           <input
             style={{

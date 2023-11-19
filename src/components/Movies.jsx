@@ -24,7 +24,12 @@ function ListOfMovies({ itemsPerPage, movies }) {
                 <h3>{movie.title}</h3>
                 <p>{movie.year}</p>
                 <p>{movie.released}</p>
-                <img src={movie.image} alt={movie.title} />
+                <div class="container">
+                  <img src={movie.image} alt={movie.title}/>
+                  <button class="heart-button">
+                    <i class="fa fa-heart"></i>
+                  </button>
+                </div>
               </li>
             ))
         }

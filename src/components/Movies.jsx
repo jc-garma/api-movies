@@ -1,11 +1,21 @@
 import React, { useState } from "react";
+import { FaHeart } from "react-icons/fa";
 
 function ListOfMovies({ itemsPerPage, movies }) {
   const [currentPage, setCurrentPage] = useState(1);
+  const [activeMovies, setActiveMovies] = useState({});
   const maxPages = Math.ceil(movies.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = movies.slice(startIndex, endIndex);
+
+  const handleClick = (movieId) => {
+    setActiveMovies(prevState => ({
+       ...prevState,
+       [movieId]: !prevState[movieId],
+    }));
+   };
+   
 
   function handlePageChange(newPage) {
     if (newPage >= 1 && newPage <= maxPages) {
@@ -19,18 +29,19 @@ function ListOfMovies({ itemsPerPage, movies }) {
         {
           /*!loading && !error && */ currentItems.length > 0 &&
             currentItems.map((movie) => (
-              //
+              movie.image !=='N/A' && (
               <li className="movie" key={movie.id}>
                 <h3>{movie.title}</h3>
                 <p>{movie.year}</p>
                 <p>{movie.released}</p>
                 <div class="container">
-                  <img src={movie.image} alt={movie.title}/>
-                  <button class="heart-button">
-                    <i class="fa fa-heart"></i>
-                  </button>
+                  <img src={movie.image} alt={movie.title} style={{ width: '300px', height: '405px' }} className="fixed-image"/>
+                  {/* <button className="heart-button" onClick={() => handleClick(movie.id)} key={movie.id} > */}
+                    <FaHeart  className="heart-button" onClick={() => handleClick(movie.id)} color={activeMovies[movie.id] ? 'red' : 'gray'} size="30px"/>
+                  {/* </button> */}
                 </div>
               </li>
+               )
             ))
         }
       </ul>
@@ -40,7 +51,7 @@ function ListOfMovies({ itemsPerPage, movies }) {
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={!(currentPage > 1)}
         >
-          Previous
+          Anterior
         </button>
 
         <button
@@ -48,7 +59,7 @@ function ListOfMovies({ itemsPerPage, movies }) {
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={!(currentPage < maxPages)}
         >
-          Next
+          Siguiente
         </button>
       </div>
     </div>
@@ -56,7 +67,7 @@ function ListOfMovies({ itemsPerPage, movies }) {
 }
 
 function NoMoviesResults() {
-  return <p>No se encontraron películas para esta búsqueda</p>;
+  return <p>No se encontraron elementos para esta búsqueda.</p>;
 }
 
 export function Movies({ movies }) {

@@ -7,6 +7,12 @@ export const searchMovies = async ({ search }) => {
 
   try {
     const response = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${search}`)
+
+    // Verificar si el estado de la respuesta es 400
+    if (response.status === 400) {
+      throw new Error('Bad request');
+    }
+
     const json = await response.json()
 
     const movies = json.Search
@@ -15,13 +21,23 @@ export const searchMovies = async ({ search }) => {
     console.log('movies',movies);
 
     // Mapeamos los datos de que vienen de la app de mayusculas a minúsculas
-    return movies?.map(movie => ({
-      id: movie.imdbID,
-      title: movie.Title,
-      released: convertirFecha(generarFechaAleatoria()), //movie.Released '04 May 2012'
-      year: movie.Year,
-      image: movie.Poster
-    }))
+    return movies
+  ?.filter(movie => movie.Type === 'movie' || movie.Type === 'series')
+  .map(movie => ({
+    id: movie.imdbID,
+    title: movie.Title,
+    released: convertirFecha(generarFechaAleatoria()), //movie.Released '04 May  2012'
+    year: movie.Year,
+    image: movie.Poster // Si movie.Poster existe, lo asigna, sino asigna una cadena vacía
+  }));
+
+    // return movies?.map(movie => ({
+    //   id: movie.imdbID,
+    //   title: movie.Title,
+    //   released: convertirFecha(generarFechaAleatoria()), //movie.Released '04 May 2012'
+    //   year: movie.Year,
+    //   image: movie.Poster
+    // }))
   } catch (e) {
     //setError(e);
     throw new Error('Error searching movies')

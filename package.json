@@ -9,9 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "jsonwebtoken": "^9.0.2",
     "just-debounce-it": "3.2.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.48.2",
+    "react-icons": "^5.0.1",
+    "wouter": "^2.12.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

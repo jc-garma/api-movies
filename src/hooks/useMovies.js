@@ -2,11 +2,15 @@ import { useRef, useState, useMemo, useCallback } from "react";
 import { searchMovies } from "../services/movies.js";
 
 export function useMovies({ search, sort, sortReleaseSort }) {
-  const [movies, setMovies] = useState([]); //
+  const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   // el error no se usa pero puedes implementarlo
   // si quieres:
   const [, setError] = useState(null);
+
+  // favoritos
+  const [favourites, setFavourites] = useState([]);
+
   const previousSearch = useRef(search); // Guardar la referencia de la busqueda anterior. Aunque utilice el hook en varios sitios diferentes, el useRef lo tiene de manera interna
 
   /*const getMovies = async () => {
@@ -66,5 +70,5 @@ export function useMovies({ search, sort, sortReleaseSort }) {
       : movies
   }, [sort, movies])*/
 
-  return { movies: sortedMovies, getMovies, loading };
+  return { movies: sortedMovies, getMovies, loading, favourites, setFavourites };
 }

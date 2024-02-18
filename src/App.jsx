@@ -3,6 +3,7 @@ import { useMovies } from './hooks/useMovies.js'
 import { Movies } from './components/Movies.jsx'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import debounce from 'just-debounce-it'
+import Header from './components/Header/Header'
 
 // Custom Hook
 function useSearch () {
@@ -97,8 +98,10 @@ function App () {
   }
 
   return (
+    <>
+    <Header/>
     <div className='page'>
-
+      
       <header id='header'>
         <h1>🎬 Buscador de películas</h1>
         <br/>
@@ -130,6 +133,7 @@ function App () {
         }
       </main>
     </div>
+    </>
   )
 }
 

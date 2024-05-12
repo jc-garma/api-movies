@@ -6,6 +6,7 @@ import { UserContextProvider } from "./context/UserContext.jsx";
 import "./index.css";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import { Favourites } from "./pages/Favourites/Favourites.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <UserContextProvider>
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route component={App} path="/" />
           <Route component={Login} path="/login" />
           <Route component={Register} path="/register" />
+          <Route component={Favourites} path="/favourites" /> 
         {/*<Route component={ErrorPage} path="/:rest*" />*/}
         </Switch>
       </Suspense>

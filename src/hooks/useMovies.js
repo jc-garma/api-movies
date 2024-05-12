@@ -1,15 +1,17 @@
-import { useRef, useState, useMemo, useCallback } from "react";
+import { useRef, useState, useMemo, useCallback, useContext } from "react";
+import { Context } from "../context/UserContext.jsx";
 import { searchMovies } from "../services/movies.js";
 
 export function useMovies({ search, sort, sortReleaseSort }) {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { favourites, setFavourites } = useContext(Context);
   // el error no se usa pero puedes implementarlo
   // si quieres:
   const [, setError] = useState(null);
 
   // favoritos
-  const [favourites, setFavourites] = useState([]);
+  //const [favourites, setFavourites] = useState([]);
 
   const previousSearch = useRef(search); // Guardar la referencia de la busqueda anterior. Aunque utilice el hook en varios sitios diferentes, el useRef lo tiene de manera interna
 

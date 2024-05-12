@@ -2,7 +2,7 @@ import React from "react";
 import { /*useRoute,*/ Link } from "wouter";
 import useUser from "../../hooks/useUser.js";
 
-import "./Header.css";
+import "../Header/styles/Header.css";
 
 export default function Header() {
   //const isLogged = false;
@@ -15,14 +15,16 @@ export default function Header() {
 
   return (
     <header className="gf-header">
-      {isLogged ? (
+      {isLogged ? (<>
         <Link to="#" onClick={handleClick}>
           Logout
         </Link>
-      ) : (
+        <Link to="/favourites">Favourites</Link>
+        </>) : (
         <>
           <Link to="/login">Login</Link>
           <Link to="/register">Register</Link>
+          {/* <Link to="/favourites">Favourites</Link> */}
         </>
       )}
     </header>

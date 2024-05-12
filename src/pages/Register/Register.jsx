@@ -32,13 +32,14 @@ export default function Register() {
 
   return (
     <>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px' }}>
         <label>
           Username
           <input
             placeholder="username"
             onChange={(e) => setUsername(e.target.value)}
             value={username}
+            style={{ marginBottom: '10px', padding: '10px', borderRadius: '5px' }}
           />
         </label>
 
@@ -49,6 +50,7 @@ export default function Register() {
             placeholder="password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+            style={{ marginBottom: '10px', padding: '10px', borderRadius: '5px' }}
           />
         </label>
 

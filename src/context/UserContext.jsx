@@ -7,6 +7,9 @@ export const Context = React.createContext({});
 export function UserContextProvider({ children }) {
   // 3. Prop token web javascript
   // const [jwt, setJWT] = useState(null);
+  // favoritos
+  const [favourites, setFavourites] = useState([]);
+
   const [jwtState, setJWTState] = useState(null);
   let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
   localStorage.setItem('usuarios', JSON.stringify(usuarios));
@@ -17,6 +20,8 @@ export function UserContextProvider({ children }) {
       value={{
         jwtState,
         setJWTState,
+        favourites, 
+        setFavourites,
       }}
     >
       {children}

@@ -1,5 +1,12 @@
 const API_KEY = '4287ad07'
 
+/**
+ * 
+ * @param {*} search
+ * el parametro search recibido es de tipo string, representa la cadena introducida para la búsqueda.
+ * @returns 
+ * retorna movies que es un objeto en formato json, representa las peliculas resultantes.
+ */
 export const searchMovies = async ({ search }) => {
   // const [loading, setLoading] = useState(false);
   // const [error, setError] = useState(false);

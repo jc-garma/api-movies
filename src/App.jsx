@@ -1,60 +1,11 @@
 import './App.css'
 import { useMovies } from './hooks/useMovies.js'
+import { useSearch } from './hooks/useSearch.js'
 import { Movies } from './components/Movies.jsx'
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import debounce from 'just-debounce-it'
 import Header from './components/Header/Header'
 
-// Custom Hook
-function useSearch () {
-  const [search, updateSearch] = useState('')
-  const [error, setError] = useState(null)
-  const isFirstInput = useRef(true)
-
-  // Forma descontrolada
- // Ejemplo useRef, refencia del DOM
- // const inputRef = useRef() // Crea un objeto para la refrencia
- /*const handleSubmit = (event) => {
-  event.preventDefault();
-  const inputEl = inputRef.current; // Recuperar el elemento del DOM como querySelector
-  const value = inputEl.value; // Accedemos al valor cambiado
-  console.log(value);
- }*/
-
-  /*const handleSubmit = (event) => {
-    event.preventDefault();
-    const fields = Object.fromEntries(new window.FormData(event.target))
-    // const { query } = Object.fromEntries(new window.FormData(event.target))
-    // console.log(query);
-    console.log(fields); // Objeto de values de todos los campos del formulario
-  }*/
-
-  useEffect(() => {
-    if (isFirstInput.current) {
-      isFirstInput.current = search === ''
-      return
-    }
-
-    if (search === '') {
-      setError('No se puede buscar una película vacía')
-      return
-    }
-
-    if (search.match(/^\d+$/)) {
-      setError('No se puede buscar una película con un número')
-      return
-    }
-
-    if (search.length < 3) {
-      setError('La búsqueda debe tener al menos 3 caracteres')
-      return
-    }
-
-    setError(null)
-  }, [search])
-
-  return { search, updateSearch, error }
-}
 
 function App () {
   const [sort, setSort] = useState(false)
@@ -62,7 +13,7 @@ function App () {
 
   // Componentes limpios, sacar la lógica de los componentes fuera, con custom hooks
   const { search, updateSearch, error } = useSearch()
-  const { movies, loading, getMovies } = useMovies({ search, sort, sortReleaseSort })
+  const { movies, loading, getMovies, favourites, setFavourites } = useMovies({ search, sort, sortReleaseSort })
 
   const debouncedGetMovies = useCallback(
     debounce(search => {
@@ -129,7 +80,7 @@ function App () {
 
       <main>
         {
-          loading ? <p>Cargando...</p> : <Movies movies={movies} />
+          loading ? <p>Cargando...</p> : <Movies movies={movies} favourites={favourites} setFavourites={setFavourites} />
         }
       </main>
     </div>
@@ -137,29 +88,5 @@ function App () {
   )
 }
 
-// Hook
-function useDebounce(value, delay) {
-  // State and setters for debounced value
-  const [debouncedValue, setDebouncedValue] = useState(value);
-
-  useEffect(
-    () => {
-      // Update debounced value after delay
-      const handler = setTimeout(() => {
-        setDebouncedValue(value);
-      }, delay);
-
-      // Cancel the timeout if value changes (also on delay change or unmount)
-      // This is how we prevent debounced value from updating if value is changed ...
-      // .. within the delay period. Timeout gets cleared and restarted.
-      return () => {
-        clearTimeout(handler);
-      };
-    },
-    [value, delay] // Only re-call effect if value or delay changes
-  );
-
-  return debouncedValue;
-}
 
 export default App

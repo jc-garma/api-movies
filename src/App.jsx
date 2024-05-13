@@ -1,7 +1,7 @@
 import './App.css'
 import { useMovies } from './hooks/useMovies.js'
 import { useSearch } from './hooks/useSearch.js'
-import { Movies } from './components/Movies.jsx'
+import { Movies } from './pages/Movies/Movies.jsx'
 import { useState, useEffect, useCallback } from 'react'
 import debounce from 'just-debounce-it'
 import Header from './components/Header/Header'
@@ -51,8 +51,7 @@ function App () {
   return (
     <>
     <Header/>
-    <div className='page'>
-      
+    <div className='page'>  
       <header id='header'>
         <h1>🎬 Buscador de películas</h1>
         <br/>
